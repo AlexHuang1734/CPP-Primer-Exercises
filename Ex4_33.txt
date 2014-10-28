@@ -1,0 +1,16 @@
+Explain the following expression:
+someValue ? ++x, ++y : --x, --y;
+
+I was stuck by this expression for some time, and now I figure it out.
+Please allow me to share my process of thinking.
+Frist, we know that the precedence of comma operator "," is the lowest.
+So the expression equals to (someValue ? ++x, ++y : --x), --y;
+Besides, we must be aware of that the associality of ?: operator is from right to left.
+Then, when somevalue is false, then we should get the value from the right of sub expression:
+--x, --y; Then the value value should be --y.
+For true condition, the result of the left sub expression is ++y. However, we must note that 
+there is still a --y in the end following a comma, then the final value for y should minus 1 from
+the ++y expression. Hence, acutally, when true, the result is y itself after a addition and a subtraction.
+In a word, this expression is equivalent to somevalue ? y : --y;
+
+If there is any mistakes in my thinking, please let me know, thanks for reading.
